@@ -1,0 +1,6 @@
+Learn effective versioning and collaboration techniques by using Git
+Improve documentation of code
+Clearly identify requirements from the user and segment them into workable projects before coding
+Meet minimally but effectively in person.  Communicate more constantly through Github
+Measure success by: # of functioning features, on time delivery, and # of customer requirements met.
+Write code once, test it twice, and then push to customer.
