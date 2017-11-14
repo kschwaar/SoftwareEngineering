@@ -80,23 +80,7 @@ package{
 			var twos:int = countTwos(hand);
 			hand.sort(Card.numberOrder);
 			
-			var i:int;
-			var j:int;
-			var good:Boolean;
-			for (i = twos; i < hand.length; i++){
-				good = false;
-				for (j = 10; j <= 14; j++){
-					if (hand[i].getNumber() == j){
-						good = true;
-					}
-				}
-				if (!good){
-					errors++;
-				}
-			}
-			
-			
-			if ((errors == 0) && isStraightFlush(hand)){
+			if ((hand[twos].getNumber() < 10) && isStraightFlush(hand)){
 				return true;
 			}
 			else{
@@ -116,7 +100,7 @@ package{
 		
 		private static function isFourOfAKind(hand:Vector.<Card>):Boolean{
 			var twos:int = countTwos(hand);
-			hand.sort(Card.numberOrder)
+			hand.sort(Card.numberOrder);
 			
 			var highestMatches = 1;
 			var curMatches = 1;
@@ -144,22 +128,14 @@ package{
 		
 		private static function isFullHouse(hand:Vector.<Card>):Boolean{
 			var twos:int = countTwos(hand);
-			
-			var type1:int = hand[0].getNumber();
-			var type2:int = -1;
-			var curType:int = -1;
+			hand.sort(Card.numberOrder);
 			
 			var i:int;
+			var type1:int = hand[twos].getNumber();
+			var type2:int = hand[hand.length-1].getNumber();
+			
 			for (i = twos; i < hand.length; i++){
-				curType = hand[i].getNumber();
-				if (curType == type1 || curType == type2){
-					//don't return false yet
-					//do nothing
-				}
-				else if (type2 == -1){
-					type2 = curType;
-				}
-				else{
+				if ((hand[i].getNumber() != type1) && (hand[i].getNumber() != type2)){
 					return false;
 				}
 			}
@@ -186,39 +162,20 @@ package{
 		
 		private static function isStraight(hand:Vector.<Card>):Boolean{
 			var twos:int = countTwos(hand);
-			var errors:int = 0;
-			hand.sort(Card.numberOrder)
+			hand.sort(Card.numberOrder);
 			
-			var index:int = twos;
-			var curNumber:int = hand[index].getNumber();
-			
-			while (index < hand.length-1){
-				if (curNumber + 1 == hand[index + 1].getNumber() ){
-					index++;
-					curNumber++;
-				}
-				else{
-					errors++;
-					curNumber++;
-					if (errors > 5){
-						break;
-					}
-				}
-			}
-			
-			var ref:int = twos - errors;
-			if (ref >= 0){
-				return true;
-			}
-			else{
+			var min:int = hand[twos].getNumber();
+			var max:int = hand[hand.length - 1].getNumber();
+			if ((max - min) > 4){
 				return false;
 			}
+			for (var i:int = twos; i < hand.length-1; i++){
+				if (hand[i].getNumber == hand[i + 1].getNumber){
+					return false;
+				}
+			}
+			return true;
 		}
-		
-		
-		
-		
-		
 		
 		
 		private static function isThreeOfAKind(hand:Vector.<Card>):Boolean{

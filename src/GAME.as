@@ -89,6 +89,7 @@ package
 			
 			
 			
+			
 			//init UI elements
 			background_Image = new E_IMAGE(Assets, Config.Game.Background);
 			debug_area = new E_TEXT(Config.Game.Debug_Area);
