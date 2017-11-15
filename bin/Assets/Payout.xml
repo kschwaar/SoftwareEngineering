@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Engine>
+	<Royal_Flush 		Multiplier="200"	Hand="royal_flush"		Texture="Royal_Flush"		/>
+	<Straight_Flush 	Multiplier="40"		Hand="straight_flush"	Texture="Straight_Flush"	/>
+	<Four_Of_A_Kind 	Multiplier="20"		Hand="four_of_a_kind"	Texture="Four_Of_A_Kind"	/>
+	<Full_House 		Multiplier="5"		Hand="full_house"		Texture="Full_House"		/>
+	<Flush 				Multiplier="4"		Hand="flush"			Texture="Flush"				/>
+	<Straight 			Multiplier="3"		Hand="straight" 		Texture="Straight"			/>
+	<Three_Of_A_Kind 	Multiplier="3"		Hand="three_of_a_kind"	Texture="Three_Of_A_Kind"	/>
+	<Two_Pair 			Multiplier="1"		Hand="two_pair" 		Texture="Two_Pair"			/>
+	<Pair 				Multiplier="-1"		Hand="pair" 			Texture="Pair.png"			/>
+	<NoHand				Multiplier="-1"		Hand="lose"				Texture="No_Hand"			/>
+</Engine>

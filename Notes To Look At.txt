@@ -1,0 +1,7 @@
+Files that Jacob Worked on.  Look these over and work off of them.
+
+Deck.as
+GAME.as
+Card.as
+Game.xml
+Payout.xml
