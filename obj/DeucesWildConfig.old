@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'11/13/2017'</value>
+      <value>'11/17/2017'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -88,18 +88,15 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\SoftwareEngineering\src</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Game_Library</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\AS3RD_Party</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\Starling 2</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\Starling 2</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\AS3RD_Party</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Game_Library</path-element>
-      <path-element>E:\DevelopmentPrograms\FD\Library\AS3\classes</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\src</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Drivers\Starling 2\starling\src</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Drivers\AS3RD_Party</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library</path-element>
+      <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
-    <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Game_Library\MAIN.as</path-element>
+    <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library\MAIN.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>
