@@ -35,7 +35,10 @@ package
 		
 		
 		private var deck:Deck;
+		private var testDeck:Vector.<Card>;
 		private var hand:Vector.<Card>;
+		
+		private var testButton:E_BUTTON;
 		
 		private var _Asset_Loader:ASSET_LOADER;
 		private var _Assets:AssetManager;
@@ -132,7 +135,48 @@ package
 			deal_button = new E_BUTTON(Assets, Config.Game.Deal_Button);
 			deal_button.addEventListener(BUTTON.EVENT_TOUCHED, deal);
 			deal_button.Text = "Deal";
-
+			
+			testButton = new E_BUTTON(Assets, Config.Game.Test_Button);
+			testButton.addEventListener(BUTTON.EVENT_TOUCHED, runTest);
+			testButton.Text = "Run Test";
+			
+			//push cards onto the test deck in order, when "test" is pressed, it will load up 5 cards and check a win
+			testDeck = new Vector.<Card>();
+			
+			//make sure to set 5 at a time
+			testDeck.push(new Card(Card.SPADE, Card.TWO));
+			testDeck.push(new Card(Card.HEART, Card.THREE));
+			testDeck.push(new Card(Card.SPADE, Card.KING));
+			testDeck.push(new Card(Card.CLUB, Card.ACE));
+			testDeck.push(new Card(Card.DIAMOND, Card.FOUR));
+			
+			//this will make a random card if you want
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			
+			/*
+			 * we want to test 1 natural of each hand,
+			 * one with a single wild (and be pretty diffrent so don't just change one card to be a 2)
+			 * and then as many wilds as that hand can have with out making it another hand
+			 * (like a pair with 2 wilds is just automaticaly a 3 of a kind at least. it can't be a pair any more)
+			 *
+			 * and bettween hands an intentionaly losing hand (if you feel like it, you can scrap that idea if you hate it)
+			 * 
+			 * go from best hand to worst hand
+			 * 
+			 */
+			
+			 
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			//When you have an image, animation, text field, etc. you need to make sure that you add the child to the stage or else it won't show up. 
@@ -159,7 +203,9 @@ package
 				
 				betButtons[0],
 				betButtons[1],
-				betButtons[2]
+				betButtons[2],
+				
+				testButton
 			]);
 			
 			
@@ -337,6 +383,20 @@ package
 			return out;
 		}
 		
+		
+		private function runTest():void{
+			var i:int;
+			for (i = 0; i < hand.length; i++){
+				if(testDeck.length > 0){
+					hand[i] = testDeck.pop();
+				}
+				else{
+					hand[i] = new Card(Card.SPADE,Card.ACE);
+				}
+			}
+			flipCardImages();
+			displayWin();
+		}
 	
 		//Getters 
 		public function get Asset_Loader():ASSET_LOADER
