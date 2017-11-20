@@ -8,6 +8,6 @@
 	<Straight 			Multiplier="3"		Hand="straight" 		Texture="Straight"			/>
 	<Three_Of_A_Kind 	Multiplier="3"		Hand="three_of_a_kind"	Texture="Three_Of_A_Kind"	/>
 	<Two_Pair 			Multiplier="1"		Hand="two_pair" 		Texture="Two_Pair"			/>
-	<Pair 				Multiplier="-1"		Hand="pair" 			Texture="Pair.png"			/>
-	<NoHand				Multiplier="-1"		Hand="lose"				Texture="No_Hand"			/>
+	<Pair 				Multiplier="0"		Hand="pair" 			Texture="Pair.png"			/>
+	<NoHand				Multiplier="0"		Hand="lose"				Texture="No_Hand"			/>
 </Engine>

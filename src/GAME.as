@@ -29,6 +29,8 @@ package
 		private var betButtons:Vector.<E_BUTTON>;
 		private var bet:int;
 		
+		private var cashout:E_BUTTON;
+		
 		
 		private var dealt:Boolean;
 		private  static var moveTime:int = 300;
@@ -116,7 +118,7 @@ package
 			betButtons.push(new E_BUTTON(Assets, Config.Game.Bet_five));
 			betButtons.push(new E_BUTTON(Assets, Config.Game.Bet_ten));
 			
-			bet = 1;
+			bet = 10;
 			
 			creditMeter = new E_METER(Config.Game.Credits);
 			creditMeterBack = new E_IMAGE(Assets, Config.Game.CreditsBack);
@@ -130,7 +132,21 @@ package
 				holdButtons[i].addEventListener(BUTTON.EVENT_TOUCHED, hold(holdButtons[i]));
 				holdButtons[i].Text = "Hold";
 			}
-		
+			
+			for (i = 0; i < betButtons.length; i++){
+				betButtons[i].addEventListener(BUTTON.EVENT_TOUCHED, pressBet(betButtons[i]));
+			}
+			betButtons[2].Enabled = false;
+			
+			betButtons[0].Text = "1";
+			betButtons[1].Text = "5";
+			betButtons[2].Text = "10";
+			
+			cashout = new E_BUTTON(Assets, Config.Game.Cashout);
+			cashout.Text = "Cash Out";
+			cashout.addEventListener(BUTTON.EVENT_TOUCHED, cashoutA);
+			
+			
 			
 			deal_button = new E_BUTTON(Assets, Config.Game.Deal_Button);
 			deal_button.addEventListener(BUTTON.EVENT_TOUCHED, deal);
@@ -204,6 +220,7 @@ package
 				betButtons[0],
 				betButtons[1],
 				betButtons[2],
+				cashout,
 				
 				testButton
 			]);
@@ -225,23 +242,116 @@ package
 		private function Enter_Frame_Handler():void
 		{
 			//Constantly update the instruction area with the random number.
+			if(!dealt){
+				if (
+					(credits <= 0) &&
+					Assets.getTexture("Card Back") != cardImages[0].Get_Texture()
+				){
+					showBack();
+					deal_button.Enabled = false;
+					enableBet(false);
+				}
+				else if (credits < bet){
+					deal_button.Enabled = false;
+				}
+				else{
+					deal_button.Enabled = true;
+				}
+			}
 		}
 		
 		//These are methods that are meant to be attached to event listeneres
 		private function deal():void{
 				//re deal
 			if (!dealt){
+				cashout.Enabled = false;
+				credits -= bet;
+				creditMeter.Set(credits);
+				
 				newHand(false);
 				flipCardImages();
 				enableHold(true);
+				enableBet(false);
 				dealt = true;
 			}
 			else{
+				cashout.Enabled = true;
 				newHand(true);
 				updateCardImages();
 				enableHold(false);
+				enableBet(true);
 				displayWin();
 				dealt = false;
+			}
+		}
+		
+		private function hold(button:E_BUTTON):Function{
+			var index:int;
+			index = holdButtons.indexOf(button);
+			function out():void{
+				if(dealt){
+					if (hand[index].isHeld()){
+						hand[index].setHeld(false);
+						cardImages[index].Move_To(cardImages[index].x, Config.Game.Card1.@Y, moveTime);
+					}
+					else{
+						hand[index].setHeld(true);
+						cardImages[index].Move_To(cardImages[index].x, Config.Game.Card1.@Y - 50, moveTime);
+					}
+				}
+			}
+			return out;
+		}
+		
+		private function pressBet(button:E_BUTTON):Function{
+			var index:int;
+			index = betButtons.indexOf(button);
+			function out():void{
+				betButtons[0].Enabled = true;
+				betButtons[1].Enabled = true;
+				betButtons[2].Enabled = true;
+				betButtons[index].Enabled = false;
+				if (index == 0){
+					bet = 1;
+				}
+				else if (index == 1){
+					bet = 5;
+				}
+				else if (index == 2){
+					bet = 10;
+				}
+			}
+			return out;
+		}
+		
+		private function runTest():void{
+			var i:int;
+			for (i = 0; i < hand.length; i++){
+				if(testDeck.length > 0){
+					hand[i] = testDeck.pop();
+				}
+				else{
+					hand[i] = new Card(Card.SPADE,Card.ACE);
+				}
+			}
+			flipCardImages();
+			displayWin();
+		}
+		
+		private function cashoutA():void{
+			if (credits != 0){
+				deal_button.Enabled = false;
+				credits = 0;
+				creditMeter.Set(credits);
+				showBack();
+				enableBet(false);
+			}
+			else{
+				deal_button.Enabled = true;
+				bet = 10
+				enableBet(true);
+				credits = 50;
+				creditMeter.Set(credits);
 			}
 		}
 		
@@ -285,6 +395,7 @@ package
 				}
 			}
 		}
+		
 		
 		private function flipCardImages():void{
 			var i:int;
@@ -352,10 +463,10 @@ package
 			}
 			else{
 				text = Payout.NoHand.@Texture;
-				mult = -3;
+				mult = Payout.NoHand.@Multiplier;
 			}
 			
-			credits += mult;
+			credits += bet*mult;
 			creditMeter.Set(credits);
 			
 			//change to new texture 
@@ -365,38 +476,35 @@ package
 		}
 		
 		
-		private function hold(button:E_BUTTON):Function{
-			var index:int;
-			index = holdButtons.indexOf(button);
-			function out():void{
-				if(dealt){
-					if (hand[index].isHeld()){
-						hand[index].setHeld(false);
-						cardImages[index].Move_To(cardImages[index].x, Config.Game.Card1.@Y, moveTime);
+		
+		private function enableBet(enable:Boolean){
+				betButtons[0].Enabled = enable;
+				betButtons[1].Enabled = enable;
+				betButtons[2].Enabled = enable;
+				if (enable){
+					if (bet == 1){
+						betButtons[0].Enabled = false;
 					}
-					else{
-						hand[index].setHeld(true);
-						cardImages[index].Move_To(cardImages[index].x, Config.Game.Card1.@Y - 50, moveTime);
+					else if (bet == 5){
+						betButtons[1].Enabled = false;
+					}
+					else if (bet == 10){
+						betButtons[2].Enabled = false;
 					}
 				}
-			}
-			return out;
 		}
 		
-		
-		private function runTest():void{
+		private function showBack():void{
 			var i:int;
-			for (i = 0; i < hand.length; i++){
-				if(testDeck.length > 0){
-					hand[i] = testDeck.pop();
-				}
-				else{
-					hand[i] = new Card(Card.SPADE,Card.ACE);
-				}
-			}
-			flipCardImages();
-			displayWin();
+			for (i = 0; i < cardImages.length ; i++){
+				cardImages[i].Flip(
+					Assets.getTexture("Card Back"),
+					200,
+					cardImages[i].x, cardImages[i].y,
+					Config.Game.Card1.@Scale);
+			}	
 		}
+		
 	
 		//Getters 
 		public function get Asset_Loader():ASSET_LOADER
