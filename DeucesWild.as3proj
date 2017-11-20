@@ -17,9 +17,21 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\DeucesWild\Source\Game_Library" />
-    <class path="..\DeucesWild\Source\Drivers\AS3RD_Party" />
-    <class path="..\DeucesWild\Source\Drivers\Starling 2" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <class path="..\..\FlashDevelop Projects\Source\Source\Game_Library" />
+    <class path="..\..\FlashDevelop Projects\Source\Source\Drivers\AS3RD_Party" />
+    <class path="..\..\FlashDevelop Projects\Source\Source\Drivers\Starling 2\starling\src" />
+=======
+    <class path="Source\Drivers\Starling 2\starling\src" />
+    <class path="Source\Drivers\AS3RD_Party" />
+    <class path="Source\Game_Library" />
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+=======
+    <class path="Source\Drivers\Starling 2\starling\src" />
+    <class path="Source\Drivers\AS3RD_Party" />
+    <class path="Source\Game_Library" />
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
   </classpaths>
   <!-- Build options -->
   <build>
@@ -47,7 +59,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="" />
-    <option compilerConstants="CONFIG::TARGET,false&#xA;CONFIG::DEVELOPMENT,true&#xA;CONFIG::SCREEN_WIDTH,1920&#xA;CONFIG::SCREEN_HEIGHT,1080&#xA;CONFIG::VIEWPORT_WIDTH,1366&#xA;CONFIG::VIEWPORT_HEIGHT,768&#xA;CONFIG::TARGET_ADDRESS,&quot;127.0.0.1&quot;&#xA;CONFIG::TARGET_PORT,&quot;0&quot;&#xA;CONFIG::SHOW_MOUSE,true&#xA;CONFIG::SHOW_EXIT_BUTTON,true&#xA;CONFIG::SHOW_STATS,false&#xA;CONFIG::FULL_SCREEN,false&#xA;CONFIG::DEMO,false&#xA;CONFIG::GAME_TYPE,&quot;SLOT&quot;" />
+    <option compilerConstants="CONFIG::TARGET,false&#xA;CONFIG::DEVELOPMENT,true&#xA;CONFIG::SCREEN_WIDTH,1920&#xA;CONFIG::SCREEN_HEIGHT,1080&#xA;CONFIG::VIEWPORT_WIDTH,1440&#xA;CONFIG::VIEWPORT_HEIGHT,900&#xA;CONFIG::TARGET_ADDRESS,&quot;127.0.0.1&quot;&#xA;CONFIG::TARGET_PORT,&quot;0&quot;&#xA;CONFIG::SHOW_MOUSE,true&#xA;CONFIG::SHOW_EXIT_BUTTON,false&#xA;CONFIG::SHOW_STATS,false&#xA;CONFIG::FULL_SCREEN,false&#xA;CONFIG::DEMO,false&#xA;CONFIG::GAME_TYPE,&quot;SLOT&quot;" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->
@@ -76,7 +88,15 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\Main.as" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <compile path="..\..\FlashDevelop Projects\Source\Source\Game_Library\MAIN.as" />
+=======
+    <compile path="Source\Game_Library\MAIN.as" />
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+=======
+    <compile path="Source\Game_Library\MAIN.as" />
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
@@ -88,7 +108,7 @@
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
   <options>
-    <option showHiddenPaths="False" />
+    <option showHiddenPaths="True" />
     <option testMovie="Custom" />
     <option testMovieCommand="bat\RunApp.bat" />
   </options>

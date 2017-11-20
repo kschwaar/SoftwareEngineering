@@ -35,12 +35,21 @@ package{
 		
 		
 		//constructors
-		public function Card(valSuit:String,valNumber:int){
-			this.setSuit(valSuit);
-			this.setNumber(valNumber);
+		public function Card(valSuit:String=" ",valNumber:int=-1){
+			
+			if(valSuit != " " && valNumber != -1){
+				this.setSuit(valSuit);
+				this.setNumber(valNumber);
+			}
+			else{
+				this.setSuit(SUITS[Math.floor(Math.random() * SUITS.length)]);
+				this.setNumber(NUMBERS[Math.floor(Math.random() * NUMBERS.length)]);			
+			}
 			this.held = false;
 		}
+		
 		//util
+		//doesn't work quite right yet
 		public function iterate():void{
 			if (number < ACE){
 				number++;

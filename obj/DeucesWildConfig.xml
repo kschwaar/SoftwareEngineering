@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'11/13/2017'</value>
+      <value>'11/17/2017'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -48,11 +48,11 @@
     </define>
     <define append="true">
       <name>CONFIG::VIEWPORT_WIDTH</name>
-      <value>1366</value>
+      <value>1440</value>
     </define>
     <define append="true">
       <name>CONFIG::VIEWPORT_HEIGHT</name>
-      <value>768</value>
+      <value>900</value>
     </define>
     <define append="true">
       <name>CONFIG::TARGET_ADDRESS</name>
@@ -68,7 +68,7 @@
     </define>
     <define append="true">
       <name>CONFIG::SHOW_EXIT_BUTTON</name>
-      <value>true</value>
+      <value>false</value>
     </define>
     <define append="true">
       <name>CONFIG::SHOW_STATS</name>
@@ -88,18 +88,36 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\SoftwareEngineering\src</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Game_Library</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\AS3RD_Party</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\Starling 2</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\Starling 2</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Drivers\AS3RD_Party</path-element>
-      <path-element>E:\Meghan's Files\KevinSchoolFiles\DeucesWild\Source\Game_Library</path-element>
-      <path-element>E:\DevelopmentPrograms\FD\Library\AS3\classes</path-element>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <path-element>C:\Users\Braden\Documents\GitHub\SoftwareEngineering\src</path-element>
+      <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Game_Library</path-element>
+      <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Drivers\AS3RD_Party</path-element>
+      <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Drivers\Starling 2\starling\src</path-element>
+=======
+=======
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\src</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Drivers\Starling 2\starling\src</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Drivers\AS3RD_Party</path-element>
+      <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library</path-element>
+<<<<<<< HEAD
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+=======
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+      <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
   </compiler>
   <file-specs>
-    <path-element>E:\Meghan's Files\KevinSchoolFiles\SoftwareEngineering\src\Main.as</path-element>
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Game_Library\MAIN.as</path-element>
+=======
+    <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library\MAIN.as</path-element>
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+=======
+    <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library\MAIN.as</path-element>
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

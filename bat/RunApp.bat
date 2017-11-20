@@ -4,6 +4,12 @@
 cd %~dp0 & cd ..
 
 set PAUSE_ERRORS=1
+
+for /D %%p IN ("bin\*.*") DO rmdir "%%p" /s /q
+xcopy "Assets" "bin\Assets" /s /c /y /i /q
+xcopy "Menu" "bin\Menu" /s /c /y /i /q
+xcopy "Icons" "bin\icons" /s /c /y /i /q
+
 call bat\SetupSDK.bat
 call bat\SetupApp.bat
 
@@ -13,13 +19,6 @@ echo.
 
 adl "%APP_XML%" "%APP_DIR%"
 if errorlevel 1 goto error
-
-:: Clear bin folder and copy over assets to be packaged.
-for /D %%p IN ("bin\*.*") DO rmdir "%%p" /s /q
-xcopy "Assets" "bin\Assets" /s /c /y /i /q
-xcopy "Menu" "bin\Menu" /s /c /y /i /q
-xcopy "Icons" "bin\icons" /s /c /y /i /q
-
 goto end
 
 :error

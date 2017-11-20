@@ -35,7 +35,10 @@ package
 		
 		
 		private var deck:Deck;
+		private var testDeck:Vector.<Card>;
 		private var hand:Vector.<Card>;
+		
+		private var testButton:E_BUTTON;
 		
 		private var _Asset_Loader:ASSET_LOADER;
 		private var _Assets:AssetManager;
@@ -132,7 +135,48 @@ package
 			deal_button = new E_BUTTON(Assets, Config.Game.Deal_Button);
 			deal_button.addEventListener(BUTTON.EVENT_TOUCHED, deal);
 			deal_button.Text = "Deal";
-
+			
+			testButton = new E_BUTTON(Assets, Config.Game.Test_Button);
+			testButton.addEventListener(BUTTON.EVENT_TOUCHED, runTest);
+			testButton.Text = "Run Test";
+			
+			//push cards onto the test deck in order, when "test" is pressed, it will load up 5 cards and check a win
+			testDeck = new Vector.<Card>();
+			
+			//make sure to set 5 at a time
+			testDeck.push(new Card(Card.SPADE, Card.TWO));
+			testDeck.push(new Card(Card.HEART, Card.THREE));
+			testDeck.push(new Card(Card.SPADE, Card.KING));
+			testDeck.push(new Card(Card.CLUB, Card.ACE));
+			testDeck.push(new Card(Card.DIAMOND, Card.FOUR));
+			
+			//this will make a random card if you want
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			testDeck.push(new Card());
+			
+			/*
+			 * we want to test 1 natural of each hand,
+			 * one with a single wild (and be pretty diffrent so don't just change one card to be a 2)
+			 * and then as many wilds as that hand can have with out making it another hand
+			 * (like a pair with 2 wilds is just automaticaly a 3 of a kind at least. it can't be a pair any more)
+			 *
+			 * and bettween hands an intentionaly losing hand (if you feel like it, you can scrap that idea if you hate it)
+			 * 
+			 * go from best hand to worst hand
+			 * 
+			 */
+			
+			 
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			//When you have an image, animation, text field, etc. you need to make sure that you add the child to the stage or else it won't show up. 
@@ -159,7 +203,9 @@ package
 				
 				betButtons[0],
 				betButtons[1],
-				betButtons[2]
+				betButtons[2],
+				
+				testButton
 			]);
 			
 			
@@ -184,112 +230,138 @@ package
 		//These are methods that are meant to be attached to event listeneres
 		private function deal():void{
 				//re deal
-			if(dealt){
-				var i:int;
-				for (i = 0; i < hand.length; i++){
-					if(!hand[i].isHeld()){
+			if (!dealt){
+				newHand(false);
+				flipCardImages();
+				enableHold(true);
+				dealt = true;
+			}
+			else{
+				newHand(true);
+				updateCardImages();
+				enableHold(false);
+				displayWin();
+				dealt = false;
+			}
+		}
+		
+		
+		//all the deal functions
+		private function newHand(justHold:Boolean):void{
+			var i:int;
+			if (justHold){
+				for (i = 0 ; i < hand.length ; i++){
+					if (!hand[i].isHeld()){
 						hand[i] = deck.popCard();
-						cardImages[i].Flip(
-							Assets.getTexture(hand[i].getTextureName()),
-							200, 
-							cardImages[i].x, cardImages[i].y, 
-							cardImages[i].scale);
+					}
+					else{
+						hand[i].setHeld(false);
 					}
 				}
-				for (i = 0; i < holdButtons.length; i++){
-					holdButtons[i].Enabled = false;
-				}
-				
-				//Post game responsibilities -----------------------------------------------------------------------LOOK HERE NIMROD
-				var win:String = Deck.winType(hand);
-				var mult:Number;
-				var text:String;
-				
-				
-				if (win == Payout.NoHand.@Hand){
-					mult = Payout.NoHand.@Multiplier;
-					text = Payout.NoHand.@Texture;
-				}
-				else if (win == Payout.Pair.@Hand){
-					mult = Payout.Pair.@Multiplier;
-					text = Payout.Pair.@Texture;
-				}
-				else if (win == Payout.Two_Pair.@Hand){
-					mult = Payout.Two_Pair.@Multiplier;
-					text = Payout.Two_Pair.@Texture;
-				}
-				else if (win == Payout.Three_Of_A_Kind.@Hand){
-					mult = Payout.Three_Of_A_Kind.@Multiplier;
-					text = Payout.Three_Of_A_Kind.@Texture;
-				}
-				else if (win == Payout.Straight.@Hand){
-					mult = Payout.Straight.@Multiplier;
-					text = Payout.Straight.@Texture;
-				}
-				else if (win == Payout.Flush.@Hand){
-					mult = Payout.Flush.@Multiplier;
-					text = Payout.Flush.@Texture;
-				}
-				else if (win == Payout.Full_House.@Hand){
-					mult = Payout.Full_House.@Multiplier;
-					text = Payout.Full_House.@Texture;
-				}
-				else if (win == Payout.Four_Of_A_Kind.@Hand){
-					mult = Payout.Four_Of_A_Kind.@Multiplier;
-					text = Payout.Four_Of_A_Kind.@Texture;
-				}
-				else if (win == Payout.Straight_Flush.@Hand){
-					mult = Payout.Straight_Flush.@Multiplier;
-					text = Payout.Straight_Flush.@Texture;
-				}
-				else if (win == Payout.Royal_Flush.@Hand){
-					mult = Payout.Royal_Flush.@Multiplier;
-					text = Payout.Royal_Flush.@Texture;
-				}
-				else{
-					text = Payout.NoHand.@Texture;
-					mult = -3;
-				}
-				
-				credits += mult;
-				creditMeter.Set(credits);
-				
-				//change to new texture 
-				win_image.Flip(Assets.getTexture(text), 200, win_image.x, win_image.y);
-				
-				debug_area.Text = win;
-				dealt = false;
-				
-				
-				
-				
-				
-				
 			}
-			//first hand
 			else{
 				deck = new Deck();
-				var i:int;
 				for (i = 0; i < hand.length; i++){
 					hand[i] = deck.popCard();
+				}
+			}
+		}
+		
+		private function updateCardImages():void{
+			var i:int;
+			for (i = 0 ; i < hand.length; i++){
+				
+				if (
+					(Assets.getTexture(hand[i].getTextureName()) != cardImages[i].Get_Texture())
+				){
 					cardImages[i].Flip(
 						Assets.getTexture(hand[i].getTextureName()),
 						200,
 						cardImages[i].x, cardImages[i].y,
-						cardImages[i].scale);
+						Config.Game.Card1.@Scale);
 				}
-				for (i = 0; i < holdButtons.length; i++){
-					holdButtons[i].Enabled = true;
-				}
-				dealt = true;
-			}
-			var i:int;
-			for (i = 0; i < hand.length; i++){
-				if (hand[i].isHeld()){
-					hand[i].setHeld(false);
+				if ((cardImages[i].x != Config.Game.Card1.@Y) && !hand[i].isHeld()){
 					cardImages[i].Move_To(cardImages[i].x, Config.Game.Card1.@Y, moveTime);
 				}
 			}
+		}
+		
+		private function flipCardImages():void{
+			var i:int;
+			for (i = 0; i < hand.length;i++){
+				cardImages[i].Flip(
+					Assets.getTexture(hand[i].getTextureName()),
+					200,
+					cardImages[i].x, cardImages[i].y,
+					Config.Game.Card1.@Scale);
+			}
+		}
+		
+		private function enableHold(enable:Boolean):void{
+			var i:int;
+			for (i = 0; i < holdButtons.length; i++){
+				holdButtons[i].Enabled = enable;
+			}
+		}
+		
+		private function displayWin():void{
+			var win:String = Deck.winType(hand);
+			var mult:Number;
+			var text:String;
+			
+			
+			if (win == Payout.NoHand.@Hand){
+				mult = Payout.NoHand.@Multiplier;
+				text = Payout.NoHand.@Texture;
+			}
+			else if (win == Payout.Pair.@Hand){
+				mult = Payout.Pair.@Multiplier;
+				text = Payout.Pair.@Texture;
+			}
+			else if (win == Payout.Two_Pair.@Hand){
+				mult = Payout.Two_Pair.@Multiplier;
+				text = Payout.Two_Pair.@Texture;
+			}
+			else if (win == Payout.Three_Of_A_Kind.@Hand){
+				mult = Payout.Three_Of_A_Kind.@Multiplier;
+				text = Payout.Three_Of_A_Kind.@Texture;
+			}
+			else if (win == Payout.Straight.@Hand){
+				mult = Payout.Straight.@Multiplier;
+				text = Payout.Straight.@Texture;
+			}
+			else if (win == Payout.Flush.@Hand){
+				mult = Payout.Flush.@Multiplier;
+				text = Payout.Flush.@Texture;
+			}
+			else if (win == Payout.Full_House.@Hand){
+				mult = Payout.Full_House.@Multiplier;
+				text = Payout.Full_House.@Texture;
+			}
+			else if (win == Payout.Four_Of_A_Kind.@Hand){
+				mult = Payout.Four_Of_A_Kind.@Multiplier;
+				text = Payout.Four_Of_A_Kind.@Texture;
+			}
+			else if (win == Payout.Straight_Flush.@Hand){
+				mult = Payout.Straight_Flush.@Multiplier;
+				text = Payout.Straight_Flush.@Texture;
+			}
+			else if (win == Payout.Royal_Flush.@Hand){
+				mult = Payout.Royal_Flush.@Multiplier;
+				text = Payout.Royal_Flush.@Texture;
+			}
+			else{
+				text = Payout.NoHand.@Texture;
+				mult = -3;
+			}
+			
+			credits += mult;
+			creditMeter.Set(credits);
+			
+			//change to new texture 
+			win_image.Flip(Assets.getTexture(text), 200, win_image.x, win_image.y);
+			
+			debug_area.Text = win;
 		}
 		
 		
@@ -311,6 +383,20 @@ package
 			return out;
 		}
 		
+		
+		private function runTest():void{
+			var i:int;
+			for (i = 0; i < hand.length; i++){
+				if(testDeck.length > 0){
+					hand[i] = testDeck.pop();
+				}
+				else{
+					hand[i] = new Card(Card.SPADE,Card.ACE);
+				}
+			}
+			flipCardImages();
+			displayWin();
+		}
 	
 		//Getters 
 		public function get Asset_Loader():ASSET_LOADER
