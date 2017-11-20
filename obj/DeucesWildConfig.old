@@ -90,6 +90,7 @@
     <source-path append="true">
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <path-element>C:\Users\Braden\Documents\GitHub\SoftwareEngineering\src</path-element>
       <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Game_Library</path-element>
       <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Drivers\AS3RD_Party</path-element>
@@ -97,11 +98,16 @@
 =======
 =======
 >>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+=======
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
       <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\src</path-element>
       <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Drivers\Starling 2\starling\src</path-element>
       <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Drivers\AS3RD_Party</path-element>
       <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library</path-element>
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
+=======
 >>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
 =======
 >>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
@@ -111,7 +117,11 @@
   <file-specs>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <path-element>C:\Users\Braden\Documents\FlashDevelop Projects\Source\Source\Game_Library\MAIN.as</path-element>
+=======
+    <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library\MAIN.as</path-element>
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
 =======
     <path-element>C:\Users\jacob\gitHub\SoftwareEngineering\Source\Game_Library\MAIN.as</path-element>
 >>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b

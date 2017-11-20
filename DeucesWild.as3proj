@@ -19,9 +19,15 @@
     <class path="src" />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <class path="..\..\FlashDevelop Projects\Source\Source\Game_Library" />
     <class path="..\..\FlashDevelop Projects\Source\Source\Drivers\AS3RD_Party" />
     <class path="..\..\FlashDevelop Projects\Source\Source\Drivers\Starling 2\starling\src" />
+=======
+    <class path="Source\Drivers\Starling 2\starling\src" />
+    <class path="Source\Drivers\AS3RD_Party" />
+    <class path="Source\Game_Library" />
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
 =======
     <class path="Source\Drivers\Starling 2\starling\src" />
     <class path="Source\Drivers\AS3RD_Party" />
@@ -90,7 +96,11 @@
   <compileTargets>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <compile path="..\..\FlashDevelop Projects\Source\Source\Game_Library\MAIN.as" />
+=======
+    <compile path="Source\Game_Library\MAIN.as" />
+>>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
 =======
     <compile path="Source\Game_Library\MAIN.as" />
 >>>>>>> 0b6107cd8193aeb1950e62195a17b2b2df14fa4b
